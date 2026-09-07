@@ -1,29 +1,45 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
 import './globals.css';
+import { Providers } from './providers';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
-
+// TODO: replace styldoor.in with the real domain before launch.
 export const metadata: Metadata = {
-  title: 'styldoor',
-  description: 'styldoor web app',
+  metadataBase: new URL('https://styldoor.in'),
+  title: {
+    default: 'styldoor — salon-quality care, brought home',
+    template: '%s — styldoor',
+  },
+  description:
+    'Book a vetted stylist for a haircut, colour or shave at home in Ludhiana. Salons and solo barbers: get matched to nearby customers by distance, rating and rank.',
+  keywords: [
+    'at-home salon',
+    'home haircut Ludhiana',
+    'mobile barber',
+    'doorstep salon',
+    'salon at home',
+  ],
+  openGraph: {
+    title: 'styldoor — salon-quality care, brought home',
+    description:
+      'At-home salon and barber services in Ludhiana. Book a vetted stylist online.',
+    url: 'https://styldoor.in',
+    siteName: 'styldoor',
+    locale: 'en_IN',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${GeistSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

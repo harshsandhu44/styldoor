@@ -1,7 +1,6 @@
 @import '@styldoor/ui/globals.css';
 
 @theme inline {
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-geist-sans);
 }
