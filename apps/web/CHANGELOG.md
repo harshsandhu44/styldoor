@@ -1,3 +1,10 @@
+# web [1.1.0](https://github.com/harshsandhu44/styldoor/compare/web@1.0.0...web@1.1.0) (2026-09-07)
+
+
+### Features
+
+* **web:** styldoor landing page ([#1](https://github.com/harshsandhu44/styldoor/issues/1)) ([1b290ec](https://github.com/harshsandhu44/styldoor/commit/1b290ecc2013a8571e351913b25dfb41d306e23a))
+
 # web 1.0.0 (2026-09-07)
 
 
