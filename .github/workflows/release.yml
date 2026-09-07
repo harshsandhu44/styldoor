@@ -1,0 +1,39 @@
+# Runs multi-semantic-release on every push to main: computes each app's next
+# version from its own commits since its last release and, if one is due,
+# bumps its package.json, writes its changelog, tags it, and pushes.
+#
+# `--ignore-packages=packages/**` scopes releases to apps only; shared
+# packages are consumed via workspace:* and never released on their own.
+# Inert until the first app is added.
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      # Full history and tags: multi-semantic-release finds each package's
+      # last release by walking back to its most recent tag.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          token: ${{ secrets.RELEASE_TOKEN }}
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
