@@ -1,0 +1,10 @@
+{
+  "extends": "@styldoor/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@styldoor/ui/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}
